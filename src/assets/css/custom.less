@@ -1,0 +1,177 @@
+@fz-10: 10px;
+@fz-11: 11px;
+@fz-12: 12px;
+@fz-13: 13px;
+@fz-14: 14px;
+@fz-15: 15px;
+@fz-16: 16px;
+@fz-17: 17px;
+@fz-18: 18px;
+@fz-19: 19px;
+@fz-20: 20px;
+@fz-21: 21px;
+@fz-22: 22px;
+@fz-27: 27px;
+
+@text-normal-color: #000;
+@text-grey: rgba(167, 167, 167, 1);
+@placeholder-color: rgba(167, 167, 167, 1);
+@login-placeholder: rgba(201, 201, 201, 1);
+@skyblue: rgba(139, 205, 254, 1);
+@line-color: rgba(228, 228, 228, 1);
+@city-color: rgba(47, 47, 47, 1);
+@active-city-background: rgba(234, 247, 255, 1);
+@time-background: rgba(211, 211, 217, 1);
+@auth-tip: rgba(190, 190, 190, 1);
+@recommend-back: rgb(250, 250, 250);
+@recommend-price: rgba(255, 83, 83, 1);
+@tip-back: rgba(107, 107, 107, 1);
+
+@background: rgb(245, 245, 245);
+@theme-color: rgba(16, 164, 254, 1);
+@line-color: rgba(232, 232, 232, 0.7);
+@lighter-grey: #cfcfcf;
+@grey: #929091;
+@text-grey: #9a9a9a;
+@bold-text-grey: #616161;
+@dark-grey: #454545;
+@input-back: rgba(245, 245, 245, 1);
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+/deep/ p,
+ul,
+li {
+  margin: 0;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.block {
+  height: 60px;
+}
+
+.single-line {
+  overflow: hidden; //超出的文本隐藏
+  text-overflow: ellipsis; //用省略号显示
+  white-space: nowrap; //不换行
+}
+
+.three-line {
+  word-wrap: break-word; /* 内容存在英语或数字时强制换行 */
+  overflow: hidden; /* 隐藏溢出部分 */
+  text-overflow: ellipsis; /* 显示省略符号来代表被隐藏的文本 */
+  display: -webkit-box; /* 将对象作为弹性伸缩盒子模型显示 */
+  -webkit-box-orient: vertical; /* 设置盒子内排列顺序为纵向 */
+  -webkit-line-clamp: 3; /* 限制块元素显示的文本的行数 */
+}
+
+.second-line {
+  word-wrap: break-word; /* 内容存在英语或数字时强制换行 */
+  overflow: hidden; /* 隐藏溢出部分 */
+  text-overflow: ellipsis; /* 显示省略符号来代表被隐藏的文本 */
+  display: -webkit-box; /* 将对象作为弹性伸缩盒子模型显示 */
+  -webkit-box-orient: vertical; /* 设置盒子内排列顺序为纵向 */
+  -webkit-line-clamp: 2; /* 限制块元素显示的文本的行数 */
+}
+
+.align-c {
+  text-align: center;
+}
+
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.shrink-0 {
+  flex-shrink: 0;
+}
+
+.shrink-1 {
+  flex-shrink: 1;
+}
+
+.grow-0 {
+  flex-grow: 0;
+}
+
+.grow-1 {
+  flex-grow: 1;
+}
+
+.align-self-end {
+  align-self: flex-end;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+.bz-bd {
+  box-sizing: border-box;
+}
+
+.van-empty /deep/ .van-empty__bottom {
+  font-size: @fz-14;
+  color: @text-grey;
+}
+
+.van-divider {
+  margin: 0;
+}
+
+.hairline {
+  transform: scale(0.5);
+}

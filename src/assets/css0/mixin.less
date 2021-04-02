@@ -1,0 +1,90 @@
+.noWrap() {
+	white-space: nowrap;
+	word-break: break-all;
+}
+
+.textWrap() {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.hyphens() {
+	word-wrap: break-word;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+}
+
+
+.ellipsis(@w:auto) {
+	width: @w;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-wrap: normal;
+}
+
+.ellipsisLn(@line) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: @line;
+}
+
+// 水平垂直居中
+.ruiHVCenter() {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	height: 100vh;
+	width: 100%;
+}
+
+// 垂直居中
+.ruiVCenter() {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+}
+
+// 显示N列
+.ruiListCol(@cols: 3, @padding: 0) {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: calc(100% / @cols);
+	padding: @padding;
+	position: relative;
+}
+
+// 显示N列
+.ruiMask(@cols: 3, @padding: 0) {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: calc(100% / @cols);
+	padding: @padding;
+	position: relative;
+}
+
+// 渐变
+.bgGradient(@_colorA, @_colorB) {
+	background-image: -webkit-linear-gradient(top, @_colorA, @_colorB);
+	background-image: -o-linear-gradient(top, @_colorA, @_colorB);
+	background-image: -ms-linear-gradient(top, @_colorA, @_colorB);
+	background-image: linear-gradient(top, @_colorA, @_colorB);
+	background-repeat: repeat-x;
+}
+
+// 阴影
+.boxShadow(@x: 2px, @y: 2px, @radius: 5px, @color: rgba(0,0,0,0.78)) {
+	-moz-box-shadow: @x @y @radius @color;
+	-webkit-box-shadow: @x @y @radius @color;
+	box-shadow: @x @y @radius @color;
+}

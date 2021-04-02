@@ -1,0 +1,168 @@
+@import "./mixin";
+@import "./variable";
+@import "./rem";
+
+.van-tabbar {
+	border-top: 1px solid @border-color;
+	//box-shadow: 0px -1px 1px 1px fade(#000, 5%);
+}
+
+.rui-tabbar {
+	// height: @tabbar-height;
+}
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+	.rui-tabbar {
+		height: 80px;
+		//margin-bottom: 1.7rem;
+	}
+}
+
+#nprogress {
+	@npColor: @green;
+	
+	.bar {
+		background: @npColor;
+		height: 1px;
+	}
+	
+	.spinner-icon {
+		border-top-color: @npColor;
+		border-left-color: @npColor;
+	}
+	
+	.peg {
+		box-shadow: 0 0 0.2rem @npColor, 0 0 0.1rem @npColor;
+	}
+}
+
+.rui-list {
+	.van-empty {
+		min-height: 70vh;
+		justify-content: flex-start;
+	}
+	
+	.van-tab {
+		font-size: 30px;
+	}
+	
+	.van-swipe-cell__right, .van-swipe-cell__left {
+		button {
+			height: 100%;
+			border: 0;
+		}
+	}
+	
+	.van-swipe-cell {
+		.van-cell:last-child::after, .van-cell--borderless::after {
+			display: unset;
+		}
+	}
+	
+}
+
+.van-dropdown-menu__bar {
+	box-shadow: unset !important;
+	border-bottom: 1px solid @border-color;
+}
+
+.van-grid {
+	.van-grid-item__icon {
+		position: relative;
+	}
+}
+
+.van-checkbox, .van-radio {
+	margin-bottom: 5px;
+}
+
+.van-dialog {
+	.van-dialog__message {
+		margin-top: 10px;
+	}
+}
+
+.rui-swiper {
+	.van-swipe__indicator--active {
+		width: 15px;
+		border-radius: 5px;
+	}
+}
+
+.rui-filter {
+	display: flex;
+	align-items: center;
+	
+	.van-dropdown-menu {
+		flex: 1;
+	}
+	
+	.rui-filter-button {
+		height: 45px;
+		border-radius: unset;
+		border: unset;
+		border-bottom: 1px solid @border-color;
+		background-color: @white;
+		color: @text-color;
+		
+		&.van-button--disabled {
+			opacity: 1;
+		}
+	}
+	
+}
+
+.rui-hv-center {
+	.ruiHVCenter()
+}
+
+.unsticky {
+	.van-sticky {
+		position: relative;
+	}
+}
+
+.rui-fab {
+	position: fixed;
+	bottom: 150px;
+	right: 0px;
+	//z-index: 999;
+	opacity: 0.7;
+}
+
+.rui-qrcode {
+	border: 1px solid @gray-4;
+}
+
+.rui-edit {
+}
+
+.rui-edit-footer {
+	padding: 20px;
+	.van-button--block {
+		margin-bottom: @padding-sm;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	
+	&.buttons-in-row {
+		display: flex;
+		flex-direction: row;
+		.van-button--block {
+			margin: 0 @padding-sm 0 0;
+			&:last-child {
+				margin: 0;
+			}
+		}
+	}
+}
+
+.rui-button-field {
+	&.van-field {
+		padding: 0.12rem 0.32rem;
+	}
+	.van-field__label {
+		padding-top: 0.08rem
+	}
+}

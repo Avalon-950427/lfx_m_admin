@@ -1,0 +1,232 @@
+@import "./variable";
+// vant源uploader
+.van-uploader {
+	position: relative;
+	display: inline-block;
+	
+	&__wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		
+		&--disabled {
+			opacity: 0.5;
+		}
+	}
+	
+	&__input {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		cursor: pointer;
+		opacity: 0;
+		
+		&-wrapper {
+			position: relative;
+		}
+		&:disabled {
+			cursor: not-allowed;
+		}
+	}
+	
+	&__upload {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+		width: @uploader-size;
+		height: @uploader-size;
+		margin: @_uploader__margin;
+		background-color: @uploader-upload-background-color;
+		border: 1px dashed @uploader-upload-border-color;
+		border-radius: @uploader-upload-border-radius;
+		background-size:cover;
+		
+		&-icon {
+			color: @uploader-icon-color;
+			font-size: @uploader-icon-size;
+		}
+		
+		&-text {
+			margin-top: @uploader-text-upload;
+			color: @uploader-text-color;
+			font-size: @uploader-text-font-size;
+		}
+	}
+	
+	&__preview {
+		position: relative;
+		margin: @_uploader__margin;
+		line-height: 0;
+		
+		&-image {
+			display: block;
+			width: @uploader-size;
+			height: @uploader-size;
+			border-radius: @uploader-upload-border-radius;
+			overflow: auto;
+			background-size:cover;
+		}
+		
+		&-delete {
+			position: absolute;
+			top: -5px;
+			right: -5px;
+			color: @uploader-delete-color;
+			font-size: @uploader-delete-icon-size;
+			background-color: @uploader-delete-background-color;
+			border-radius: 100%;
+		}
+		
+		&-cropper {
+			position: absolute;
+			bottom: 5px;
+			right: 5px;
+			color: @white;
+			font-size: @font-size-xs;
+			padding: 3px;
+			border: 1px solid @white;
+			background-color: @gray-6;
+		}
+	}
+	
+	&__file {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: @uploader-size;
+		height: @uploader-size;
+		background-color: @uploader-file-background-color;
+		border-radius: @uploader-upload-border-radius;
+		
+		&-icon {
+			color: @uploader-file-icon-color;
+			font-size: @uploader-file-icon-size;
+		}
+		
+		&-name {
+			box-sizing: border-box;
+			width: 100%;
+			margin-top: @uploader-file-name-margin-top;
+			padding: @uploader-file-name-padding;
+			color: @uploader-file-name-text-color;
+			font-size: @uploader-file-name-font-size;
+			text-align: center;
+		}
+	}
+	
+	&__mask {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		color: @white;
+		background-color: rgba(50, 50, 51, 0.5);
+		border-radius: 0.08rem;
+		
+		&-icon {
+			font-size: 0.44rem;
+		}
+		
+		&-message {
+			font-size: 12px;
+			line-height: 24px;
+		}
+	}
+	
+	&__loading {
+		width: 0.44rem;
+		height: 0.44rem;
+		color: #fff;
+	}
+	
+}
+
+// 自定义及分组
+.rui-uploader {
+	
+	.van-image__error {
+		color: @red;
+	}
+	
+	&__group {
+		display: flex;
+		padding: @padding-sm @padding-md;
+		
+		.van-field {
+			width: auto;
+			padding: 0;
+			overflow: inherit;
+			
+			.van-field__label {
+				display: none;
+			}
+		}
+		
+		> .van-field__value .van-field__body .van-field__control {
+			display: flex;
+			flex-wrap: wrap;
+			box-sizing: border-box;
+		}
+		
+		.van-uploader__upload {
+			margin: @_uploader__margin;
+		}
+	}
+	
+}
+
+// 裁剪
+.rui-cropper {
+	height: 80%;
+	
+	.toolbar {
+		width: 100%;
+		height: 50px;
+		position: absolute;
+		bottom: 30px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		
+		span {
+			font-size: @font-size-lg;
+			width: 40px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			background-color: fade(#fff, 80%);
+			margin: 0 5px;
+			border-radius: 3px;
+			&:active {
+				background-color: @gray-5;
+				color: red;
+			}
+			&.fa-check {
+				background-color: @green;
+				color: @white;
+			}
+			&.fa-close {
+				background-color: @red;
+				color: @white;
+			}
+		}
+	}
+	
+	.van-popup__close-icon {
+		color: #fff;
+		&:active {
+			color: @red;
+		}
+	}
+}
