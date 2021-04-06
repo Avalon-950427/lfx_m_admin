@@ -259,37 +259,10 @@
         let width = 350 * (document.documentElement.clientWidth / 375),
           height = 184 * (document.documentElement.clientHeight / 667)
         const ScrollBar = require('@antv/f2/lib/plugin/scroll-bar')
-        // const chart = new F2.Chart({
-        //   id: 'container',
-        //   width: width,
-        //   height: height,
-        //   pixelRatio: window.devicePixelRatio
-        // })
-        // chart.source(this.data, {
-        //   sales: {
-        //     tickCount: 5
-        //   }
-        // })
-
-        // chart.tooltip({
-        //   showItemMarker: false,
-        //   onShow: function onShow(ev) {
-        //     const items = ev.items
-        //     items[0].name = null
-        //     // items[0].name = items[0].title
-        //     items[0].name = items[0].date
-        //     items[0].value = items[0].value
-        //   }
-        // })
-        // var key
-        // this.type ? (key = 'time*clicks_num') : this.value ? (key = 'time*reject_order_add') : (key = 'time*review_order_add')
-        // chart.interval().position(key)
-        // chart.render()
         const _this = this
         var y
         this.type ? (y = 'clicks_num') : this.value ? (y = 'reject_order_add') : (y = 'review_order_add')
         let key = `date*${y}`
-        // console.log('data', this.data)
         F2.Chart.registerInteraction('pan', Pan)
         const originDates = []
         const originSteps = []
@@ -300,19 +273,15 @@
             date: obj.date,
             steps: obj[y]
           }
-          if (index % 12 === 0) {
-            item.first = true
-          }
+          // if (index % 12 === 0) {
+          //   item.first = true
+          // }
           data.push(item)
           if (index < 12) {
             // 首屏的x轴数据和y轴数据
             originDates.push(obj.date)
             originSteps.push(obj[y])
           }
-          // if (obj.date >= '2018-05-01') {
-
-          // }
-
           if (item.first) {
             firstDayArr.push(item)
           }
@@ -325,13 +294,12 @@
           height: height,
           plugins: ScrollBar
         })
-        // console.log('7777', data, originDates, originSteps)
         chart.source(data, {
           date: {
             type: 'timeCat',
             tickCount: 6, // 一屏上横轴的坐标个数
             values: originDates,
-            mask: 'YY-MM'
+            mask: this.buttonOptions.type ? 'MM-DD' : 'YY-MM'
           },
           steps: {
             tickCount: 5 // y轴分几段

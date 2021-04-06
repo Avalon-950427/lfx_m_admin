@@ -57,6 +57,7 @@
       },
 
       toStatistic(id) {
+        // type为1则需要在统计页请求分类列表
         this.$router.push({ name: 'statisticDetail', params: { type: 1, id: id } })
       }
     }
