@@ -88,13 +88,29 @@
     },
 
     created() {
-      this.getOrderList()
+      new Promise((resolve, reject) => {
+        ORDER_CATEGORY.forEach((item) => {
+          item.page = 0
+          item.businesses = [] // dropdown的options
+          item.value = 0 // dropdown的value
+          item.orders = []
+          item.finished = false
+          item.loading = false
+          item.error = false
+        })
+        resolve()
+      })
+        .then((res) => {
+          this.getOrderList()
+        })
+        .catch((e) => {
+          console.log(e)
+        })
     },
 
     methods: {
       getOrderList() {
         let currentCategory = this.orderCategories[this.active]
-        console.log(currentCategory.type)
         let params, path
         if (currentCategory.type === 1) {
           params = {
@@ -222,7 +238,6 @@
           this.show = true
           let timestamp = Date.now(),
             hash = md5(timestamp + 'lfx')
-          console.log(sn, timestamp, hash)
           let src = `/madminapi/order/download?_responseType=blob&sn=${sn}`
           let oA = document.createElement('a')
           oA.href = src
