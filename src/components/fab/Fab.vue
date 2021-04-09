@@ -15,7 +15,7 @@
         <van-image class="back" :src="backImg" @click.stop="back"></van-image>
       </div>
       <div class="float-item">
-        <van-icon name="wap-home-o" color="#ddd" @click.stop="toHome" size="0.4rem"></van-icon>
+        <van-icon name="wap-home-o" color="#ddd" @click.stop="toHome" size="0.5rem"></van-icon>
         <!-- <van-image :src="homeImg" @click.stop="toHome"></van-image> -->
       </div>
     </div>

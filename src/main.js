@@ -10,9 +10,10 @@ import './assets/css/public.less'
 // 注册全局组件及函数
 import components from './components'
 import App from './app.vue'
+import { pagePc } from '@/utils/util.js'
 
 Vue.config.productionTip = false
-Vue.config.ignoredElements = ['wx-open-launch-weapp', 'wx-open-launch-app']
+// Vue.config.ignoredElements = ['wx-open-launch-weapp', 'wx-open-launch-app']
 
 Vue.use(webapp)
 Vue.use(components)

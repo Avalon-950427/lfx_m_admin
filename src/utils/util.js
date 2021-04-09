@@ -225,8 +225,28 @@ function get_android_version() {
     version = (v_info + '').replace(/[^0-9|_.]/gi, '').replace(/_/gi, '.') //得到版本号4.2.2
     version = parseInt(version.split('.')[0]) // 得到版本号第一位
   }
-
+  console.log('version', version)
   return version
+}
+
+/**
+ * 获取客户端信息
+ */
+function getClientInfo() {
+  var userAgentInfo = navigator.userAgent
+  var Agents = new Array('Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod')
+  var agentinfo = null
+  for (var i = 0; i < Agents.length; i++) {
+    if (userAgentInfo.indexOf(Agents[i]) > 0) {
+      agentinfo = userAgentInfo
+      break
+    }
+  }
+  if (agentinfo) {
+    return agentinfo
+  } else {
+    return 'PC'
+  }
 }
 
 function getApiPrefix(api) {
@@ -254,5 +274,6 @@ export {
   getUserInfo,
   getApiPrefix,
   getApiPath,
-  get_android_version
+  get_android_version,
+  getClientInfo
 }

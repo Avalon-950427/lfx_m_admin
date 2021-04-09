@@ -45,8 +45,8 @@
 <style lang="less" scoped>
   @import url('~@/assets/css/custom.less');
   .card-wrap {
-    width: 347px;
-    margin: 20px auto 0;
+    // width: 347px;
+    margin: 20px 14px 0;
     padding: 1px 0;
     background-color: white;
     border-radius: 10px;

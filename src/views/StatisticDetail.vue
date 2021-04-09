@@ -85,6 +85,7 @@
   import F2 from '@antv/f2'
   import Pan from '@antv/f2/lib/interaction/pan'
   import api from '@/api/api'
+  import _ from 'lodash'
   import { COLORS } from '@/utils/enum.js'
   import { timeParser, addZero } from '@/utils/util.js'
   const FILTER_TYPE = {
@@ -258,6 +259,7 @@
       draw() {
         let width = 350 * (document.documentElement.clientWidth / 375),
           height = 184 * (document.documentElement.clientHeight / 667)
+        width > 475 ? (width = 475) : false
         const ScrollBar = require('@antv/f2/lib/plugin/scroll-bar')
         const _this = this
         var y
@@ -267,8 +269,9 @@
         const originDates = []
         const originSteps = []
         const firstDayArr = []
-        let data = []
-        this.data.forEach(function(obj, index) {
+        let data = [],
+          origin = _.cloneDeep(this.data).reverse()
+        origin.forEach(function(obj, index) {
           let item = {
             date: obj.date,
             steps: obj[y]
@@ -296,8 +299,7 @@
         })
         chart.source(data, {
           date: {
-            type: 'timeCat',
-            tickCount: 6, // 一屏上横轴的坐标个数
+            tickCount: 5, // 一屏上横轴的坐标个数
             values: originDates,
             mask: this.buttonOptions.type ? 'MM-DD' : 'YY-MM'
           },
@@ -562,6 +564,10 @@
       }
     }
     .van-popup {
+      position: fixed;
+      left: 50%;
+      max-width: @max-width;
+      transform: translate(-50%, 0);
       .popup-time {
         width: 100%;
         padding: 0 10px;

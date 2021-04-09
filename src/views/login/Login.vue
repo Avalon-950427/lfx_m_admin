@@ -1,5 +1,5 @@
 <template>
-  <div class="login-wrap">
+  <div class="login-wrap bz-bd">
     <van-image class="block" :src="require('@/assets/imgs/logo.png')"></van-image>
     <Field v-for="(field, index) in fields" :key="index" :info="field" :ref="field.ref" @buttonHandler="buttonHandler"></Field>
     <van-button block hairline :color="colors.theme" @click="login">登录</van-button>
@@ -141,8 +141,9 @@
 <style lang="less" scoped>
   @import '~@/assets/css/custom.less';
   .login-wrap {
-    overflow: scroll;
-    height: 100%;
+    // overflow: scroll;
+    min-height: 100%;
+    padding-top: 1px;
     .van-image {
       width: 110px;
       height: 60px;
@@ -150,7 +151,7 @@
     }
 
     /deep/ .text-field {
-      width: 302px;
+      width: 82%;
       padding: 0;
     }
 
@@ -174,8 +175,8 @@
     }
 
     .van-button {
-      width: 302px;
-      margin: 25px auto 18px;
+      width: 82%;
+      margin: 8% auto 5%;
       font-size: @fz-17;
     }
 

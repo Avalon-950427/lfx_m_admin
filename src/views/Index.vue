@@ -14,7 +14,7 @@
           <van-image class="shrink-0 setting-img" :src="require('@/assets/imgs/setting.png')"></van-image>
         </div>
       </div>
-      <div class="company-info-wrap flex">
+      <div class="company-info-wrap flex align-items-center">
         <div class="company-info justify-between flex grow-1">
           <div v-for="(item, index) in company" :key="index">
             <div>{{ item.name }}</div>
@@ -191,7 +191,7 @@
             }
           }
           /deep/ .van-uploader__upload {
-            width: 100%;
+            width: 100% !important;
             height: 70px !important;
             margin: 0 !important;
             border: 0;
@@ -222,8 +222,9 @@
             color: @text-grey;
             span {
               display: inline-block;
-              width: 32px;
-              height: 14px;
+              // width: 32px;
+              // height: 14px;
+              padding: 2px 4px;
               margin-right: 6px;
               line-height: 14px;
               text-align: center;

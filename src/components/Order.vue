@@ -1,5 +1,5 @@
 <template>
-  <div class="order-wrap bz-bd" v-if="info">
+  <div class="order-wrap " v-if="info">
     <div class="order-num">
       <span>进件编号</span>
       [{{ info.order_no }}]
@@ -23,7 +23,16 @@
           {{ info.add_time | formatDate }}
           <span>申报</span>
         </div>
-        <van-field placeholder="添加备注" v-model="info.reviewer_remark" disabled @click="addRemark"></van-field>
+        <van-field
+          placeholder="添加备注"
+          type="textarea"
+          rows="1"
+          :autosize="{ minHeight: 25 }"
+          maxlength="200"
+          v-model="info.reviewer_remark"
+          readonly
+          @click="addRemark"
+        ></van-field>
       </div>
     </div>
     <div class="btns flex justify-end">
@@ -116,7 +125,7 @@
         function() {
           this.$emit('download', this.info.sn)
         },
-        1000,
+        2000,
         { leading: true, trailing: false }
       ),
 
@@ -135,8 +144,9 @@
 <style lang="less" scoped>
   @import url('~@/assets/css/custom.less');
   .order-wrap {
-    width: 347px;
-    margin: 0 auto 15px;
+    // width: 347px;
+    width: auto;
+    margin: 0 14px 15px;
     padding: 16px 14px 20px;
     background-color: white;
     border-radius: 10px;
@@ -196,6 +206,9 @@
           padding: 5px 10px;
           background-color: @input-back;
           border-radius: 3.5px;
+        }
+        .van-field textarea::-webkit-scrollbar {
+          display: none;
         }
       }
     }

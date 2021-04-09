@@ -37,6 +37,8 @@
 @dark-grey: #454545;
 @input-back: rgba(245, 245, 245, 1);
 
+@max-width: 475px;
+
 h1,
 h2,
 h3,
@@ -174,4 +176,20 @@ li {
 
 .hairline {
   transform: scale(0.5);
+}
+
+/deep/ .van-overlay {
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+/deep/ .van-dropdown-item--down,
+/deep/ .van-sticky--fixed {
+  // position: fixed;
+  // left: calc((100vw - @max-width) / 2);
+  // left: 50%;
+  // right: 50%;
+
+  max-width: @max-width;
+  margin: auto;
+  // transform: translateX(-50%);
 }

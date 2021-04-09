@@ -56,7 +56,7 @@
   import _ from 'lodash'
   import md5 from 'md5'
   import { COLORS, ORDER_CATEGORY } from '@/utils/enum.js'
-  import { isWeixin, get_android_version } from '@/utils/util.js'
+  import { isWeixin, get_android_version, isIos, getClientInfo } from '@/utils/util.js'
   const PAGE_SIZE = 10
   ORDER_CATEGORY.forEach((item) => {
     item.page = 0
@@ -78,7 +78,8 @@
         remark: '',
         show: false,
         showGuide: false,
-        order: null // 当前修改备注的订单数据
+        order: null, // 当前修改备注的订单数据
+        timer: null
       }
     },
 
@@ -230,11 +231,7 @@
         //   document.body.removeChild(iframe)
         // }
         // document.body.appendChild(iframe)
-        let version = get_android_version()
-        if (isWeixin() && version >= 11) {
-          // this.showGuide = true
-          this.$router.push({ name: 'guide', query: { src: `/madminapi/order/download?_responseType=blob&sn=${sn}` } })
-        } else {
+        if ((isWeixin() && isIos()) || getClientInfo() === 'PC') {
           this.show = true
           let timestamp = Date.now(),
             hash = md5(timestamp + 'lfx')
@@ -242,11 +239,12 @@
           let oA = document.createElement('a')
           oA.href = src
           oA.click()
-          this.show = false
-          // })
-          // .catch((e) => {
-          //   this.show = false
-          // })
+          this.timer = setTimeout(() => {
+            this.show = false
+            clearTimeout(this.timer)
+          }, 3000)
+        } else {
+          this.$router.push({ name: 'guide', query: { src: `/madminapi/order/download?_responseType=blob&sn=${sn}` } })
         }
 
         // }

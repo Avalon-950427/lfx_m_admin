@@ -6,7 +6,7 @@
 
 <script>
   import Guide from '@/components/Guide.vue'
-  import { isWeixin, get_android_version } from '@/utils/util.js'
+  import { isWeixin, get_android_version, isIos } from '@/utils/util.js'
   export default {
     components: {
       Guide
@@ -19,9 +19,8 @@
     },
 
     created() {
-      console.log('src--brower', this.$route.query.src)
       if (isWeixin()) {
-        if (get_android_version() >= 11) {
+        if (!isIos()) {
           this.showGuide = true
         }
       } else {

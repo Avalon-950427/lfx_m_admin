@@ -1,12 +1,12 @@
 <template>
-  <div id="app" v-cloak>
+  <div id="app" class="ignore-body" v-cloak>
     <!-- 路由的meta没有keepAlive，则使用这个route-view -->
     <router-view v-if="!$route.meta.keepAlive"></router-view>
     <keep-alive>
       <!-- 如果某个路由的meta的keepAlive为true，则为需要保存组件状态，此时使用这个route-view -->
       <router-view v-if="$route.meta.keepAlive"></router-view>
     </keep-alive>
-    <Fab v-if="showFab" :historyLength="historyLength"></Fab>
+    <!-- <Fab v-if="showFab" :historyLength="historyLength"></Fab> -->
   </div>
 </template>
 
@@ -29,6 +29,7 @@
         showFab: false
       }
     },
+
     components: {
       Fab
     },
@@ -107,6 +108,7 @@
 </script>
 
 <style lang="less">
+  @import url('~@/assets/css/custom.less');
   // @font-face {
   //   font-family: 'sy-m';
   //   src: url('./assets/sy.otf');
@@ -123,10 +125,12 @@
   //   font-weight: 700;
   //   src: url('./assets/sy.otf');
   // }
-
+  html {
+    max-width: @max-width;
+    margin: auto;
+  }
   #app {
     position: relative;
-    // overflow: scroll;
     height: 100vh;
     margin: auto;
     font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', STHeiti, 'Microsoft Yahei', Tahoma, Simsun, sans-serif;
@@ -136,9 +140,9 @@
     -webkit-overflow-scrolling: touch;
   }
 
-  // .ignore-body {
-  //   max-width: 750px;
-  // }
+  .ignore-body {
+    max-width: @max-width;
+  }
 
   .rui-tabbar {
     background-color: white;

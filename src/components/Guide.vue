@@ -37,7 +37,7 @@
       left: 50%;
       top: 169px;
       width: 175px;
-      height: 48px;
+      height: 80px;
       transform: translate(-50%, 0);
     }
   }

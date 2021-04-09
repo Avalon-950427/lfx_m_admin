@@ -217,11 +217,11 @@ module.exports = {
       postcss: {
         plugins: [
           // flexible, 宽度为750px的设计图 37.5px = 1rem 如果css中不想转rem则用PX为单位
-          pxtorem({
-            rootValue: REM_ROOT_PX,
-            propList: ['*'],
-            selectorBlackList: ['.ignore-']
-          }),
+          // pxtorem({
+          //   rootValue: REM_ROOT_PX,
+          //   propList: ['*'],
+          //   selectorBlackList: ['.ignore-']
+          // }),
           autoprefixer()
         ]
       },
