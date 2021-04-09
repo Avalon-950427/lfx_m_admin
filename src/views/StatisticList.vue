@@ -68,7 +68,7 @@
   @import url('~@/assets/css/custom.less');
   .statistic-wrap {
     min-height: 100%;
-    overflow: scroll;
+    // overflow: scroll;
     background-color: @background;
     .statistic-top {
       height: 140px;
