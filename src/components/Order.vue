@@ -105,7 +105,7 @@
       closeOrder: _.debounce(
         function() {
           Dialog.confirm({
-            message: '温馨提示，是否确认关闭该进件？'
+            message: '温馨提示，是否确认拒绝该进件？'
           }).then(() => {
             let params = {
               sn: this.info.sn,

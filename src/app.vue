@@ -142,6 +142,7 @@
 
   .ignore-body {
     max-width: @max-width;
+    margin: auto;
   }
 
   .rui-tabbar {
