@@ -52,11 +52,12 @@
 <script>
   import Order from '@/components/Order.vue'
   import Guide from '@/components/Guide.vue'
+  import { Dialog } from 'vant'
   import api from '@/api/api'
   import _ from 'lodash'
   import md5 from 'md5'
   import { COLORS, ORDER_CATEGORY } from '@/utils/enum.js'
-  import { isWeixin, get_android_version, isIos, getClientInfo } from '@/utils/util.js'
+  import { isWeixin, get_android_version, isIos, getClientInfo, weixinVersion } from '@/utils/util.js'
   const PAGE_SIZE = 10
   ORDER_CATEGORY.forEach((item) => {
     item.page = 0
@@ -213,25 +214,11 @@
       },
 
       download(sn) {
-        // if (isWeixin()) {
-        //   this.showGuide = true
-        // } else {
-        // this.show = true
-        // window.location.href =
-        //   'http://192.168.0.234:17102/madminapi/order/download?_responseType=blob&sn=w5xvvdxW&timestamp=1617273018289&hash=efd64428eb28a6ca949bbbf26fbd5e7c'
-        //
-
-        // var src =
-        //   'http://192.168.0.234:17102/madminapi/order/download?_responseType=blob&sn=w5xvvdxW&timestamp=1617273018289&hash=efd64428eb28a6ca949bbbf26fbd5e7c'
-        // var iframe = document.createElement('iframe')
-        // iframe.style.display = 'none'
-        // iframe.src = 'javascript: \'<script>location.href="' + src + '"<\/script>\''
-        // iframe.onload = function() {
-        //   console.log(3232323999, 'dfdfdf')
-        //   document.body.removeChild(iframe)
-        // }
-        // document.body.appendChild(iframe)
         if ((isWeixin() && isIos()) || getClientInfo() === 'PC') {
+          if (isWeixin() && parseFloat(weixinVersion()) < 8.0) {
+            Dialog.alert({ message: '微信版本过低，请升级微信', confirmButtonColor: this.colors.theme })
+            return
+          }
           this.show = true
           let timestamp = Date.now(),
             hash = md5(timestamp + 'lfx')
@@ -246,8 +233,6 @@
         } else {
           this.$router.push({ name: 'guide', query: { src: `/madminapi/order/download?_responseType=blob&sn=${sn}` } })
         }
-
-        // }
       },
 
       submitRemark() {
