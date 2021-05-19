@@ -80,7 +80,7 @@ const port = 17102
 const netHost = `/madminapi/`
 // const staticHost = `http://lfxdev.t.inxi.net`;
 // const staticHost = `http://192.168.0.241:17102`;
-const staticHost = `http://192.168.0.234:17102`
+const staticHost = `http://192.168.0.218:17102`
 // const staticHost = `http://192.168.0.236:17102`
 
 // 代理

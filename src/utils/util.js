@@ -1,3 +1,4 @@
+import md5 from 'md5'
 function phoneValidator(phone) {
   return /^1[3-9]\d{9}$/.test(phone)
 }
@@ -257,6 +258,28 @@ function getApiPath(api) {
   return api.slice(api.indexOf('/'))
 }
 
+function download(sn, _this) {
+  if ((isWeixin() && isIos()) || getClientInfo() === 'PC') {
+    if (isWeixin() && parseFloat(weixinVersion()) < 8.0) {
+      Dialog.alert({ message: '微信版本过低，请升级微信', confirmButtonColor: this.colors.theme })
+      return
+    }
+    _this.show = true
+    let timestamp = Date.now(),
+      hash = md5(timestamp + 'lfx')
+    let src = `/madminapi/order/download?_responseType=blob&sn=${sn}`
+    let oA = document.createElement('a')
+    oA.href = src
+    oA.click()
+    _this.timer = setTimeout(() => {
+      _this.show = false
+      clearTimeout(_this.timer)
+    }, 3000)
+  } else {
+    _this.$router.push({ name: 'guide', query: { src: `/madminapi/order/download?_responseType=blob&sn=${sn}` } })
+  }
+}
+
 export {
   phoneValidator,
   idCardValidator,
@@ -275,5 +298,6 @@ export {
   getApiPrefix,
   getApiPath,
   get_android_version,
-  getClientInfo
+  getClientInfo,
+  download
 }

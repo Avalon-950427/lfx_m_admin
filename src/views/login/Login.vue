@@ -158,6 +158,7 @@
     /deep/ .van-field {
       margin-top: 0;
       font-size: @fz-17;
+      border-radius: 0;
       input {
         height: 45px;
       }

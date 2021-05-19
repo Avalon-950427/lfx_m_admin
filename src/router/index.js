@@ -52,6 +52,14 @@ const routes = [
     component: () => import('../views/OrderList.vue')
   },
   {
+    path: '/order/detail/:sn',
+    name: 'orderdetail',
+    meta: {
+      title: '进件详情'
+    },
+    component: () => import('../views/OrderDetail.vue')
+  },
+  {
     path: '/guide',
     name: 'guide',
     meta: {

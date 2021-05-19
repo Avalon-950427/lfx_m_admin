@@ -30,6 +30,7 @@
               :business="findBusiness(orderCategory.businesses, order)"
               :remark="remark"
               :showBtns="active ? false : true"
+              @click.native="toDetail(order)"
               @changeSuccess="changeSuccess"
               @addRemark="addRemark"
               @download="download"
@@ -55,9 +56,8 @@
   import { Dialog } from 'vant'
   import api from '@/api/api'
   import _ from 'lodash'
-  import md5 from 'md5'
   import { COLORS, ORDER_CATEGORY } from '@/utils/enum.js'
-  import { isWeixin, get_android_version, isIos, getClientInfo, weixinVersion } from '@/utils/util.js'
+  import { download } from '@/utils/util.js'
   const PAGE_SIZE = 10
   ORDER_CATEGORY.forEach((item) => {
     item.page = 0
@@ -213,27 +213,37 @@
         currentCategory.orders.splice(index, 1)
       },
 
-      download(sn) {
-        if ((isWeixin() && isIos()) || getClientInfo() === 'PC') {
-          if (isWeixin() && parseFloat(weixinVersion()) < 8.0) {
-            Dialog.alert({ message: '微信版本过低，请升级微信', confirmButtonColor: this.colors.theme })
-            return
-          }
-          this.show = true
-          let timestamp = Date.now(),
-            hash = md5(timestamp + 'lfx')
-          let src = `/madminapi/order/download?_responseType=blob&sn=${sn}`
-          let oA = document.createElement('a')
-          oA.href = src
-          oA.click()
-          this.timer = setTimeout(() => {
-            this.show = false
-            clearTimeout(this.timer)
-          }, 3000)
-        } else {
-          this.$router.push({ name: 'guide', query: { src: `/madminapi/order/download?_responseType=blob&sn=${sn}` } })
-        }
+      toDetail(order) {
+        this.$router.push(`/order/detail/${order.sn}`)
       },
+
+      download: _.debounce(
+        function(sn) {
+          download(sn, this)
+          // return
+          // if ((isWeixin() && isIos()) || getClientInfo() === 'PC') {
+          //   if (isWeixin() && parseFloat(weixinVersion()) < 8.0) {
+          //     Dialog.alert({ message: '微信版本过低，请升级微信', confirmButtonColor: this.colors.theme })
+          //     return
+          //   }
+          //   this.show = true
+          //   let timestamp = Date.now(),
+          //     hash = md5(timestamp + 'lfx')
+          //   let src = `/madminapi/order/download?_responseType=blob&sn=${sn}`
+          //   let oA = document.createElement('a')
+          //   oA.href = src
+          //   oA.click()
+          //   this.timer = setTimeout(() => {
+          //     this.show = false
+          //     clearTimeout(this.timer)
+          //   }, 3000)
+          // } else {
+          //   this.$router.push({ name: 'guide', query: { src: `/madminapi/order/download?_responseType=blob&sn=${sn}` } })
+          // }
+        },
+        1000,
+        { leading: true, trailing: false }
+      ),
 
       submitRemark() {
         let params = {

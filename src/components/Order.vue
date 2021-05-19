@@ -31,15 +31,15 @@
           maxlength="200"
           v-model="info.reviewer_remark"
           readonly
-          @click="addRemark"
+          @click.stop="addRemark"
         ></van-field>
       </div>
     </div>
     <div class="btns flex justify-end">
-      <van-button v-if="showBtns" round @click="completeOrder">完成</van-button>
-      <van-button v-if="showBtns" round @click="closeOrder">拒绝</van-button>
+      <van-button v-if="showBtns" round @click.stop="completeOrder">完成</van-button>
+      <van-button v-if="showBtns" round @click.stop="closeOrder">拒绝</van-button>
       <!-- <a href="https://download.pc6.com/down/151529/">下载</a> -->
-      <van-button round :color="colors.theme" @click="download">下载资料</van-button>
+      <van-button round :color="colors.theme" @click.stop="download">下载资料</van-button>
     </div>
   </div>
 </template>

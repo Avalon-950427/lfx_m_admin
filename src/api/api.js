@@ -10,9 +10,11 @@ export default {
   getStageData: '/product/stageData', // 获取统计详情信息
   getUserStageData: '/user/stageData', // 获取用户阶段性统计数据
   getOrderList: '/order/list', // 获取订单列表
+  getOrderDetail: '/order/detail', // 获取订单详情
   getRejectOrderList: '/order/rejectList', // 获取拒绝的订单列表
   changeOrder: '/order/update', // 修改订单状态
   downloadZip: '/order/download?_responseType=blob', // 下载压缩包
+  downloadEmail: '/order/infoEmailSend', // 下载到邮箱
   logout: `${mapi}/user/logout`, // 退出登录
   update: '/user/update', // 修改短信通知开关
   aaa: 'xxx'

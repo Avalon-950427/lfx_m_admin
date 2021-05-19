@@ -1,6 +1,6 @@
 {
   "name": "lfx_m_admin",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "private": true,
   "scripts": {
     "git": "git add . && git commit -am",
