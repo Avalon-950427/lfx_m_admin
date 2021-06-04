@@ -124,7 +124,8 @@
             this.$router.replace('/')
             const { userInfo } = res
             this.$http.cookies.set('uuid', userInfo.uuid)
-            this.$http.cookies.set('token', userInfo.token, { expires: new Date(new Date().valueOf() + userInfo.expireTime) })
+            this.$http.setToken(userInfo)
+            // this.$http.cookies.set('token', userInfo.token, { expires: new Date(new Date().valueOf() + userInfo.expireTime) })
             this.fields.smscode.value = ''
             this.fields.smscode.button = '获取验证码'
             this.countDown = 60

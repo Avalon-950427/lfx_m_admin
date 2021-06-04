@@ -218,39 +218,42 @@
         this.$http
           .get(path, { params: params })
           .then((res) => {
-            this.statisticData.push(...res.data)
-            if (this.statisticData.length >= res.count) {
-              this.finished = true
-            }
-            res.data.forEach((item, index) => {
-              // 循环res.data，修改每一项的date和time
-              if (this.activeTime === 'startMonth' || this.activeTime === 'endMonth') {
-                // 如果是month，则取出年和月拼接
-                item.date = item.date.substr(0, 4) + '-' + item.date.substr(4)
-              } else {
-                // 如果不是month则是日，那么就丢掉前4位的年，将月和日用-拼接
-                item.date = item.date.substr(4)
-                item.date = item.date.substr(0, 2) + '-' + item.date.substr(2)
+            if (Array.isArray(res.data)) {
+              this.statisticData.push(...res.data)
+              if (this.statisticData.length >= res.count) {
+                this.finished = true
               }
-              // if (index % 2 !== 0) {
-              //   // 如果index能被2整除，则初始化time，并且依次拼接空格字符串
-              //   item.time = ''
-              //   for (let i = 0; i < Math.floor(index / 2); i++) {
-              //     item.time += ' '
-              //   }
-              // } else {
-              //   item.time = item.date
-              // }
-            })
-            // if (!this.data.length) {
-            this.data.push(...res.data)
-            this.$nextTick(() => {
-              this.data.length ? this.draw() : false
-            })
+              res.data.forEach((item, index) => {
+                // 循环res.data，修改每一项的date和time
+                if (this.activeTime === 'startMonth' || this.activeTime === 'endMonth') {
+                  // 如果是month，则取出年和月拼接
+                  item.date = item.date.substr(0, 4) + '-' + item.date.substr(4)
+                } else {
+                  // 如果不是month则是日，那么就丢掉前4位的年，将月和日用-拼接
+                  item.date = item.date.substr(4)
+                  item.date = item.date.substr(0, 2) + '-' + item.date.substr(2)
+                }
+                // if (index % 2 !== 0) {
+                //   // 如果index能被2整除，则初始化time，并且依次拼接空格字符串
+                //   item.time = ''
+                //   for (let i = 0; i < Math.floor(index / 2); i++) {
+                //     item.time += ' '
+                //   }
+                // } else {
+                //   item.time = item.date
+                // }
+              })
+              // if (!this.data.length) {
+              this.data.push(...res.data)
+              this.$nextTick(() => {
+                this.data.length ? this.draw() : false
+              })
+            }
             // }
             this.loading = false
           })
           .catch((e) => {
+            console.log(e)
             this.loading = false
             this.error = true
           })
